@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday, My Love</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap');
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(135deg, #f8f4ff, #d9c7ff);
+      font-family: 'Poppins', sans-serif;
+      color: #4a0072;
+      overflow: hidden;
+      text-align: center;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+    }
+
+    h1 {
+      font-family: 'Great Vibes', cursive;
+      font-size: 3em;
+      color: #7a00cc;
+      margin-bottom: 20px;
+      animation: fadeIn 2s ease;
+    }
+
+    .btn {
+      background: #7a00cc;
+      color: white;
+      border: none;
+      padding: 12px 25px;
+      border-radius: 25px;
+      font-size: 1.2em;
+      cursor: pointer;
+      box-shadow: 0 5px 15px rgba(122, 0, 204, 0.3);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .btn:hover {
+      transform: scale(1.1);
+      box-shadow: 0 8px 25px rgba(122, 0, 204, 0.4);
+    }
+
+    .message {
+      font-size: 1.5em;
+      color: #4a0072;
+      margin-top: 20px;
+      opacity: 0;
+      transition: opacity 2s ease;
+      line-height: 1.6em;
+    }
+
+    @keyframes fadeIn {
+      from {opacity: 0; transform: translateY(20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    .sparkle, .heart, .cake {
+      position: fixed;
+      pointer-events: none;
+      z-index: 9999;
+      font-size: 20px;
+      opacity: 0.8;
+      animation: float 5s linear infinite;
+    }
+
+    @keyframes float {
+      from {transform: translateY(0) rotate(0);}
+      to {transform: translateY(-800px) rotate(360deg);}
+    }
+  </style>
+</head>
+<body>
+  <h1>Happy Birthday To The Love of My Life<br>Sumaiya Khan Manay 💜</h1>
+  <button class="btn" onclick="showSurprise()">Open Surprise 🎁</button>
+
+  <p class="message" id="message">
+    My sword is yours.<br>
+    My life is yours.<br>
+    My love is yours.<br>
+    💖 Forever Yours, Nobel 💖
+  </p>
+
+  <audio id="music" src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_7f3b31f4a1.mp3?filename=birthday-happy-birthday-music-box-122168.mp3"></audio>
+
+  <script>
+    function createSymbol(type) {
+      const el = document.createElement('div');
+      el.classList.add(type);
+
+      if (type === 'sparkle') el.textContent = '✨';
+      else if (type === 'heart') el.textContent = '💜';
+      else if (type === 'cake') el.textContent = '🎂';
+
+      el.style.left = Math.random() * window.innerWidth + 'px';
+      el.style.top = window.innerHeight + 'px';
+      el.style.fontSize = Math.random() * 20 + 15 + 'px';
+      el.style.animationDuration = (Math.random() * 4 + 4) + 's';
+      document.body.appendChild(el);
+
+      setTimeout(() => el.remove(), 5000);
+    }
+
+    function showSurprise() {
+      const msg = document.getElementById('message');
+      msg.style.opacity = 1;
+
+      const music = document.getElementById('music');
+      music.play().catch(() => {
+        alert("Please tap to allow music playback 🎶");
+      });
+
+      for (let i = 0; i < 40; i++) {
+        setTimeout(() => {
+          const symbols = ['sparkle', 'heart', 'cake'];
+          createSymbol(symbols[Math.floor(Math.random() * symbols.length)]);
+        }, i * 200);
+      }
+    }
+  </script>
+</body>
+</html>
