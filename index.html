@@ -7,47 +7,52 @@
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap');
 
+    /* Reset */
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
     body {
-      margin: 0;
-      padding: 0;
-      background: linear-gradient(135deg, #f8f4ff, #d9c7ff);
-      font-family: 'Poppins', sans-serif;
-      color: #4a0072;
-      overflow-x: hidden;
-      text-align: center;
       height: 100vh;
+      width: 100vw;
+      font-family: 'Poppins', sans-serif;
       display: flex;
       flex-direction: column;
       justify-content: center;
       align-items: center;
+      text-align: center;
+      background: linear-gradient(135deg, #f8f4ff, #d9c7ff);
+      overflow-x: hidden;
+      position: relative;
     }
 
     h1 {
       font-family: 'Great Vibes', cursive;
-      font-size: 3em;
+      font-size: 6vw;
       color: #7a00cc;
-      margin-bottom: 20px;
-      animation: fadeIn 2s ease;
+      line-height: 1.2em;
+      animation: fadeIn 2s ease forwards;
     }
 
     .name {
+      display: block;
       font-weight: 900;
-      font-size: 3.5em;
+      font-size: 8vw;
       color: #7a00cc;
+      margin-top: 0.2em;
     }
 
     .btn {
+      margin-top: 2vh;
+      padding: 1em 2em;
+      font-size: 1.8em;
+      border: none;
+      border-radius: 30px;
       background: linear-gradient(45deg, #7a00cc, #b34cff);
       color: white;
-      border: none;
-      padding: 15px 35px;
-      border-radius: 30px;
-      font-size: 1.5em;
       cursor: pointer;
       box-shadow: 0 0 15px rgba(122,0,204,0.6);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       animation: pulse 1.5s infinite;
-      margin-top: 20px;
+      z-index: 10;
     }
 
     .btn:hover {
@@ -56,38 +61,24 @@
     }
 
     @keyframes pulse {
-      0% { box-shadow: 0 0 10px rgba(122,0,204,0.6); transform: scale(1);}
-      50% { box-shadow: 0 0 25px rgba(122,0,204,0.9); transform: scale(1.05);}
-      100% { box-shadow: 0 0 10px rgba(122,0,204,0.6); transform: scale(1);}
-    }
-
-    .message {
-      font-size: 1.5em;
-      color: #4a0072;
-      margin-top: 20px;
-      opacity: 0;
-      transition: opacity 2s ease;
-      line-height: 1.6em;
-    }
-
-    .scroll-msg {
-      font-size: 1em;
-      color: #4a0072;
-      margin-top: 40px;
-      opacity: 0.8;
+      0% { transform: scale(1); box-shadow: 0 0 10px rgba(122,0,204,0.6); }
+      50% { transform: scale(1.05); box-shadow: 0 0 25px rgba(122,0,204,0.9); }
+      100% { transform: scale(1); box-shadow: 0 0 10px rgba(122,0,204,0.6); }
     }
 
     .cake-container {
       perspective: 1000px;
-      margin-top: 30px;
+      margin-top: 4vh;
     }
 
     .cake {
-      font-size: 120px;
+      font-size: 15vw;
       cursor: pointer;
       transform-style: preserve-3d;
       transition: transform 1s;
+      display: inline-block;
       position: relative;
+      z-index: 5;
     }
 
     .cake.flipped {
@@ -104,33 +95,60 @@
 
     .cake .back {
       transform: rotateY(180deg);
-      font-size: 1.2em;
+      font-size: 4vw;
       color: #4a0072;
-      width: max-content;
+      padding: 1em;
     }
 
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(20px);}
-      to {opacity: 1; transform: translateY(0);}
+    .message {
+      font-size: 3vw;
+      line-height: 1.5em;
+      color: #4a0072;
+      margin-top: 2vh;
+      opacity: 0;
+      transition: opacity 2s ease;
+    }
+
+    .scroll-msg {
+      font-size: 2.5vw;
+      color: #4a0072;
+      margin-top: 4vh;
+      opacity: 0.8;
     }
 
     .sparkle, .heart, .small-cake {
       position: fixed;
       pointer-events: none;
       z-index: 9999;
-      font-size: 25px;
+      font-size: 2.5vw;
       opacity: 0.9;
       animation: float 6s linear infinite;
     }
 
     @keyframes float {
-      from {transform: translateY(0) rotate(0);}
-      to {transform: translateY(-900px) rotate(360deg);}
+      0% { transform: translateY(0) rotate(0); }
+      100% { transform: translateY(-120vh) rotate(360deg); }
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: translateY(20px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 8vw; }
+      .name { font-size: 10vw; }
+      .cake { font-size: 25vw; }
+      .message { font-size: 4vw; }
+      .scroll-msg { font-size: 3.5vw; }
     }
   </style>
 </head>
 <body>
-  <h1>Happy Birthday To The Love of My Life<br><span class="name">SUMAIYA KHAN MANAY 💜</span></h1>
+  <h1>Happy Birthday To The Love of My Life<br>
+    <span class="name">SUMAIYA KHAN MANAY 💜</span>
+  </h1>
+
   <button class="btn" onclick="showSurprise()">Open Surprise 🎁</button>
 
   <div class="cake-container">
@@ -154,35 +172,34 @@
     function createSymbol(type) {
       const el = document.createElement('div');
       el.classList.add(type);
-
-      if (type === 'sparkle') el.textContent = '✨';
-      else if (type === 'heart') el.textContent = '💜';
-      else if (type === 'small-cake') el.textContent = '🎂';
-
+      el.textContent = type === 'sparkle' ? '✨' : type === 'heart' ? '💜' : '🎂';
       el.style.left = Math.random() * window.innerWidth + 'px';
       el.style.top = window.innerHeight + 'px';
-      el.style.fontSize = Math.random() * 30 + 20 + 'px';
+      el.style.fontSize = (Math.random()*3 + 2) + 'vw';
       el.style.animationDuration = (Math.random() * 3 + 5) + 's';
       document.body.appendChild(el);
-
       setTimeout(() => el.remove(), 6000);
     }
 
     function showSurprise() {
-      const msg = document.getElementById('message');
-      msg.style.opacity = 1;
-
-      for (let i = 0; i < 80; i++) {
-        setTimeout(() => {
-          const symbols = ['sparkle', 'heart', 'small-cake'];
-          createSymbol(symbols[Math.floor(Math.random() * symbols.length)]);
-        }, i * 150);
+      document.getElementById('message').style.opacity = 1;
+      for(let i=0; i<80; i++){
+        setTimeout(()=> {
+          const symbols=['sparkle','heart','small-cake'];
+          createSymbol(symbols[Math.floor(Math.random()*symbols.length)]);
+        }, i*150);
       }
     }
 
     function flipCake() {
       const cake = document.getElementById('cake');
       cake.classList.toggle('flipped');
+      // optional extra: add sparkle burst on flip
+      for(let i=0; i<20; i++){
+        setTimeout(()=> {
+          createSymbol(['sparkle','heart']);
+        }, i*50);
+      }
     }
   </script>
 </body>
