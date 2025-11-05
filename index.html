@@ -13,7 +13,7 @@
       background: linear-gradient(135deg, #f8f4ff, #d9c7ff);
       font-family: 'Poppins', sans-serif;
       color: #4a0072;
-      overflow: hidden;
+      overflow-x: hidden;
       text-align: center;
       height: 100vh;
       display: flex;
@@ -30,21 +30,35 @@
       animation: fadeIn 2s ease;
     }
 
+    .name {
+      font-weight: 900;
+      font-size: 3.5em;
+      color: #7a00cc;
+    }
+
     .btn {
-      background: #7a00cc;
+      background: linear-gradient(45deg, #7a00cc, #b34cff);
       color: white;
       border: none;
-      padding: 12px 25px;
-      border-radius: 25px;
-      font-size: 1.2em;
+      padding: 15px 35px;
+      border-radius: 30px;
+      font-size: 1.5em;
       cursor: pointer;
-      box-shadow: 0 5px 15px rgba(122, 0, 204, 0.3);
+      box-shadow: 0 0 15px rgba(122,0,204,0.6);
       transition: transform 0.3s ease, box-shadow 0.3s ease;
+      animation: pulse 1.5s infinite;
+      margin-top: 20px;
     }
 
     .btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 8px 25px rgba(122, 0, 204, 0.4);
+      transform: scale(1.2);
+      box-shadow: 0 0 25px rgba(122,0,204,0.9);
+    }
+
+    @keyframes pulse {
+      0% { box-shadow: 0 0 10px rgba(122,0,204,0.6); transform: scale(1);}
+      50% { box-shadow: 0 0 25px rgba(122,0,204,0.9); transform: scale(1.05);}
+      100% { box-shadow: 0 0 10px rgba(122,0,204,0.6); transform: scale(1);}
     }
 
     .message {
@@ -56,38 +70,85 @@
       line-height: 1.6em;
     }
 
+    .scroll-msg {
+      font-size: 1em;
+      color: #4a0072;
+      margin-top: 40px;
+      opacity: 0.8;
+    }
+
+    .cake-container {
+      perspective: 1000px;
+      margin-top: 30px;
+    }
+
+    .cake {
+      font-size: 120px;
+      cursor: pointer;
+      transform-style: preserve-3d;
+      transition: transform 1s;
+      position: relative;
+    }
+
+    .cake.flipped {
+      transform: rotateY(180deg);
+    }
+
+    .cake .front, .cake .back {
+      backface-visibility: hidden;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+    }
+
+    .cake .back {
+      transform: rotateY(180deg);
+      font-size: 1.2em;
+      color: #4a0072;
+      width: max-content;
+    }
+
     @keyframes fadeIn {
       from {opacity: 0; transform: translateY(20px);}
       to {opacity: 1; transform: translateY(0);}
     }
 
-    .sparkle, .heart, .cake {
+    .sparkle, .heart, .small-cake {
       position: fixed;
       pointer-events: none;
       z-index: 9999;
-      font-size: 20px;
-      opacity: 0.8;
-      animation: float 5s linear infinite;
+      font-size: 25px;
+      opacity: 0.9;
+      animation: float 6s linear infinite;
     }
 
     @keyframes float {
       from {transform: translateY(0) rotate(0);}
-      to {transform: translateY(-800px) rotate(360deg);}
+      to {transform: translateY(-900px) rotate(360deg);}
     }
   </style>
 </head>
 <body>
-  <h1>Happy Birthday To The Love of My Life<br>Sumaiya Khan Manay 💜</h1>
+  <h1>Happy Birthday To The Love of My Life<br><span class="name">SUMAIYA KHAN MANAY 💜</span></h1>
   <button class="btn" onclick="showSurprise()">Open Surprise 🎁</button>
+
+  <div class="cake-container">
+    <div class="cake" id="cake" onclick="flipCake()">
+      <div class="front">🎂</div>
+      <div class="back">Due to long distance I couldn't treat you well and couldn't be with you.<br>That's the worst feeling 💔</div>
+    </div>
+  </div>
 
   <p class="message" id="message">
     My sword is yours.<br>
     My life is yours.<br>
     My love is yours.<br>
-    💖 Forever Yours, Nobel 💖
+    💖 Forever Yours, Nobel 💖<br><br>
+    If possible, forgive me honey, please forgive me. I APOLOGIZE.
   </p>
 
-  <audio id="music" src="https://cdn.pixabay.com/download/audio/2022/10/25/audio_7f3b31f4a1.mp3?filename=birthday-happy-birthday-music-box-122168.mp3"></audio>
+  <p class="scroll-msg">Scroll down ⬇️</p>
 
   <script>
     function createSymbol(type) {
@@ -96,32 +157,32 @@
 
       if (type === 'sparkle') el.textContent = '✨';
       else if (type === 'heart') el.textContent = '💜';
-      else if (type === 'cake') el.textContent = '🎂';
+      else if (type === 'small-cake') el.textContent = '🎂';
 
       el.style.left = Math.random() * window.innerWidth + 'px';
       el.style.top = window.innerHeight + 'px';
-      el.style.fontSize = Math.random() * 20 + 15 + 'px';
-      el.style.animationDuration = (Math.random() * 4 + 4) + 's';
+      el.style.fontSize = Math.random() * 30 + 20 + 'px';
+      el.style.animationDuration = (Math.random() * 3 + 5) + 's';
       document.body.appendChild(el);
 
-      setTimeout(() => el.remove(), 5000);
+      setTimeout(() => el.remove(), 6000);
     }
 
     function showSurprise() {
       const msg = document.getElementById('message');
       msg.style.opacity = 1;
 
-      const music = document.getElementById('music');
-      music.play().catch(() => {
-        alert("Please tap to allow music playback 🎶");
-      });
-
-      for (let i = 0; i < 40; i++) {
+      for (let i = 0; i < 80; i++) {
         setTimeout(() => {
-          const symbols = ['sparkle', 'heart', 'cake'];
+          const symbols = ['sparkle', 'heart', 'small-cake'];
           createSymbol(symbols[Math.floor(Math.random() * symbols.length)]);
-        }, i * 200);
+        }, i * 150);
       }
+    }
+
+    function flipCake() {
+      const cake = document.getElementById('cake');
+      cake.classList.toggle('flipped');
     }
   </script>
 </body>
