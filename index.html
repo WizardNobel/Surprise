@@ -14,7 +14,6 @@ body {
   height: 100%;
   width: 100%;
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #fff0f5, #e6ccff);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -23,6 +22,7 @@ body {
   overflow-x: hidden;
   padding: 2rem;
   position: relative;
+  background: url('https://images.unsplash.com/photo-1608227430951-3dbe2d76d935?auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover; /* cake background */
 }
 
 /* Heading */
@@ -92,17 +92,17 @@ h1 {
   100% { transform: scale(1); box-shadow: 0 0 10px rgba(122,0,204,0.6); }
 }
 
-/* Floating Effects */
+/* Festival Symbols */
 .symbol {
   position: fixed;
   pointer-events: none;
   z-index: 9999;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   opacity: 0.9;
-  animation: float linear forwards;
+  animation: floatLinear linear infinite;
 }
 
-@keyframes float {
+@keyframes floatLinear {
   0% { transform: translateY(100vh) rotate(0deg); opacity: 0.8; }
   50% { opacity: 1; }
   100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
@@ -114,6 +114,7 @@ h1 {
   .name { font-size: 2rem; }
   .message { font-size: 0.9rem; }
   .btn { font-size: 1.2rem; padding: 0.7rem 1.5rem; }
+  .symbol { font-size: 1rem; }
 }
 </style>
 </head>
@@ -134,27 +135,29 @@ h1 {
 
 <script>
 const colors = ['#ff0066','#ff66cc','#ffcc00','#33cc33','#3399ff','#ff9933','#ff3399'];
+const symbolsArr = ['✨','💜','💖','🎂','🍰'];
 
 function createSymbol() {
   const el = document.createElement('div');
   el.classList.add('symbol');
-  const symbols = ['✨','💜','💖','🎂','🍰'];
-  el.textContent = symbols[Math.floor(Math.random()*symbols.length)];
+  el.textContent = symbolsArr[Math.floor(Math.random()*symbolsArr.length)];
   el.style.color = colors[Math.floor(Math.random()*colors.length)];
   el.style.left = Math.random()*window.innerWidth + 'px';
-  el.style.fontSize = (Math.random()*1 + 0.8)+'rem';
-  el.style.animationDuration = '120s';  // 120 seconds duration
+  el.style.fontSize = (Math.random()*1 + 1)+'rem';
+  el.style.animationDuration = (Math.random()*20 + 20) + 's'; // slow float for festive effect
   document.body.appendChild(el);
-  setTimeout(() => el.remove(), 120000);  // remove after 120s
+  setTimeout(() => el.remove(), 40000); // remove after 40s
 }
+
+let symbolInterval;
 
 function showSurprise() {
   document.getElementById('message').style.opacity = 1;
-  for(let i=0; i<200; i++){  // generate 200 symbols for festival effect
-    setTimeout(createSymbol, i*500);
+  if(!symbolInterval) {
+    symbolInterval = setInterval(createSymbol, 150); // continuously spawn symbols every 150ms
   }
 }
 </script>
 
 </body>
-</html
+</html>
