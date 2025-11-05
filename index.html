@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Happy Birthday, My Love</title>
+<title>Happy Birthday, Sumaiya</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;900&display=swap');
 
@@ -14,7 +14,7 @@ body {
   height: 100%;
   width: 100%;
   font-family: 'Poppins', sans-serif;
-  background: linear-gradient(135deg, #f8f4ff, #d9c7ff);
+  background: linear-gradient(135deg, #fff0f5, #e6ccff);
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -22,18 +22,17 @@ body {
   text-align: center;
   overflow-x: hidden;
   padding: 2rem;
+  position: relative;
 }
 
 /* Heading */
 h1 {
-  font-family: 'Poppins', sans-serif;  /* more readable */
-  font-size: 2rem;
-  font-weight: 600;
+  font-size: 2.2rem;
+  font-weight: 700;
   color: #7a00cc;
   line-height: 1.5;
   letter-spacing: 1px;
   margin-top: 1rem;
-  animation: fadeIn 2s ease forwards;
 }
 
 .name {
@@ -45,10 +44,31 @@ h1 {
   letter-spacing: 1.2px;
 }
 
+/* Messages */
+.message {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #4a0072;
+  margin-top: 2rem;
+  max-width: 90%;
+  opacity: 0;
+  transition: opacity 2s ease;
+}
+
+.message .apology {
+  display: block;
+  margin-top: 1rem;
+  font-weight: 700;
+  color: #ff0066;
+  background: rgba(255, 230, 240, 0.5);
+  padding: 0.5rem 1rem;
+  border-radius: 12px;
+}
+
 /* Button */
 .btn {
-  margin-top: 1.5rem;
-  padding: 0.7rem 1.8rem;
+  margin-top: 2rem;
+  padding: 0.8rem 2rem;
   font-size: 1.4rem;
   border: none;
   border-radius: 25px;
@@ -72,153 +92,69 @@ h1 {
   100% { transform: scale(1); box-shadow: 0 0 10px rgba(122,0,204,0.6); }
 }
 
-/* Cake */
-.cake-container {
-  perspective: 1000px;
-  margin-top: 2rem;
-}
-
-.cake {
-  font-size: 6rem;
-  max-width: 90%;
-  cursor: pointer;
-  transform-style: preserve-3d;
-  transition: transform 1s;
-  display: inline-block;
-  position: relative;
-  z-index: 5;
-}
-
-.cake.flipped {
-  transform: rotateY(180deg);
-}
-
-.cake .front, .cake .back {
-  backface-visibility: hidden;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-}
-
-.cake .back {
-  transform: rotateY(180deg);
-  font-family: 'Poppins', sans-serif;
-  font-size: 1rem;
-  color: #4a0072;
-  padding: 1rem;
-  line-height: 1.6;
-  word-wrap: break-word;
-  white-space: normal;
-  max-width: 12rem;  /* limits text width */
-  margin: 0 auto;
-}
-
-/* Messages */
-.message {
-  font-size: 1rem;
-  line-height: 1.6;
-  color: #4a0072;
-  margin-top: 1.5rem;
-  opacity: 0;
-  transition: opacity 2s ease;
-  letter-spacing: 0.5px;
-  max-width: 90%;
-}
-
-.scroll-msg {
-  font-size: 0.9rem;
-  color: #4a0072;
-  margin-top: 1.5rem;
-  opacity: 0.8;
-}
-
-/* Floating effects */
-.sparkle, .heart, .small-cake {
+/* Floating Effects */
+.symbol {
   position: fixed;
   pointer-events: none;
   z-index: 9999;
-  font-size: 1rem;
+  font-size: 1.2rem;
   opacity: 0.9;
-  animation: float 6s linear infinite;
+  animation: float linear forwards;
 }
 
 @keyframes float {
-  0% { transform: translateY(0) rotate(0); }
-  100% { transform: translateY(-120vh) rotate(360deg); }
-}
-
-@keyframes fadeIn {
-  0% { opacity: 0; transform: translateY(20px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% { transform: translateY(100vh) rotate(0deg); opacity: 0.8; }
+  50% { opacity: 1; }
+  100% { transform: translateY(-20vh) rotate(360deg); opacity: 0; }
 }
 
 /* Responsive */
 @media (max-width: 600px) {
-  h1 { font-size: 1.5rem; }
+  h1 { font-size: 1.8rem; }
   .name { font-size: 2rem; }
-  .cake { font-size: 4rem; }
-  .cake .back { max-width: 10rem; font-size: 0.9rem; }
   .message { font-size: 0.9rem; }
-  .scroll-msg { font-size: 0.8rem; }
+  .btn { font-size: 1.2rem; padding: 0.7rem 1.5rem; }
 }
 </style>
 </head>
 <body>
+
 <h1>Happy Birthday To The Love of My Life<br>
 <span class="name">SUMAIYA KHAN MANAY 💜</span></h1>
 
 <button class="btn" onclick="showSurprise()">Open Surprise 🎁</button>
 
-<div class="cake-container">
-  <div class="cake" id="cake" onclick="flipCake()">
-    <div class="front">🎂</div>
-    <div class="back">
-      Due to long distance I couldn't treat you well and couldn't be with you. That's the worst feeling 💔
-    </div>
-  </div>
-</div>
-
-<p class="message" id="message">
+<div class="message" id="message">
   My sword is yours.<br>
   My life is yours.<br>
   My love is yours.<br>
-  💖 Forever Yours, Nobel 💖<br><br>
-  If possible, forgive me honey, please forgive me. I APOLOGIZE.
-</p>
-
-<p class="scroll-msg">Scroll down ⬇️</p>
+  💖 Forever Yours, Nobel 💖<br>
+  <span class="apology">If possible forgive me honey, please forgive me. I APOLOGIZE 💔</span>
+</div>
 
 <script>
-function createSymbol(type){
+const colors = ['#ff0066','#ff66cc','#ffcc00','#33cc33','#3399ff','#ff9933','#ff3399'];
+
+function createSymbol() {
   const el = document.createElement('div');
-  el.classList.add(type);
-  el.textContent = type==='sparkle'?'✨':type==='heart'?'💜':'🎂';
-  el.style.left = Math.random()*window.innerWidth+'px';
-  el.style.top = window.innerHeight+'px';
-  el.style.fontSize = (Math.random()*0.8 + 0.8)+'rem';
-  el.style.animationDuration = (Math.random()*3 + 5)+'s';
+  el.classList.add('symbol');
+  const symbols = ['✨','💜','💖','🎂','🍰'];
+  el.textContent = symbols[Math.floor(Math.random()*symbols.length)];
+  el.style.color = colors[Math.floor(Math.random()*colors.length)];
+  el.style.left = Math.random()*window.innerWidth + 'px';
+  el.style.fontSize = (Math.random()*1 + 0.8)+'rem';
+  el.style.animationDuration = '120s';  // 120 seconds duration
   document.body.appendChild(el);
-  setTimeout(()=> el.remove(),6000);
+  setTimeout(() => el.remove(), 120000);  // remove after 120s
 }
 
-function showSurprise(){
+function showSurprise() {
   document.getElementById('message').style.opacity = 1;
-  for(let i=0;i<60;i++){
-    setTimeout(()=>{
-      const symbols=['sparkle','heart','small-cake'];
-      createSymbol(symbols[Math.floor(Math.random()*symbols.length)]);
-    }, i*150);
-  }
-}
-
-function flipCake(){
-  const cake = document.getElementById('cake');
-  cake.classList.toggle('flipped');
-  for(let i=0;i<15;i++){
-    setTimeout(()=>{ createSymbol(['sparkle','heart']); }, i*50);
+  for(let i=0; i<200; i++){  // generate 200 symbols for festival effect
+    setTimeout(createSymbol, i*500);
   }
 }
 </script>
+
 </body>
-</html>
+</html
