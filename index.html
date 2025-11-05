@@ -1,206 +1,216 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Happy Birthday, My Love</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap');
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday, My Love</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@400;600&display=swap');
 
-    /* Reset */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
+/* Reset */
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-    body {
-      height: 100vh;
-      width: 100vw;
-      font-family: 'Poppins', sans-serif;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      background: linear-gradient(135deg, #f8f4ff, #d9c7ff);
-      overflow-x: hidden;
-      position: relative;
-    }
+body {
+  height: 100%;
+  width: 100%;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(135deg, #f8f4ff, #d9c7ff);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  text-align: center;
+  overflow-x: hidden;
+  padding: 2rem;
+}
 
-    h1 {
-      font-family: 'Great Vibes', cursive;
-      font-size: 6vw;
-      color: #7a00cc;
-      line-height: 1.2em;
-      animation: fadeIn 2s ease forwards;
-    }
+/* Heading */
+h1 {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2rem;        /* safe, not huge */
+  color: #7a00cc;
+  line-height: 1.4;
+  letter-spacing: 1px;
+  margin-top: 1rem;
+  animation: fadeIn 2s ease forwards;
+}
 
-    .name {
-      display: block;
-      font-weight: 900;
-      font-size: 8vw;
-      color: #7a00cc;
-      margin-top: 0.2em;
-    }
+.name {
+  display: block;
+  font-weight: 900;
+  font-size: 2.5rem;      /* bold but not oversized */
+  color: #7a00cc;
+  margin-top: 0.3rem;
+  letter-spacing: 1.2px;
+}
 
-    .btn {
-      margin-top: 2vh;
-      padding: 1em 2em;
-      font-size: 1.8em;
-      border: none;
-      border-radius: 30px;
-      background: linear-gradient(45deg, #7a00cc, #b34cff);
-      color: white;
-      cursor: pointer;
-      box-shadow: 0 0 15px rgba(122,0,204,0.6);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-      animation: pulse 1.5s infinite;
-      z-index: 10;
-    }
+/* Button */
+.btn {
+  margin-top: 1.5rem;
+  padding: 0.7rem 1.8rem;
+  font-size: 1.4rem;
+  border: none;
+  border-radius: 25px;
+  background: linear-gradient(45deg, #7a00cc, #b34cff);
+  color: white;
+  cursor: pointer;
+  box-shadow: 0 0 12px rgba(122,0,204,0.6);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  animation: pulse 1.5s infinite;
+  max-width: 90%;
+}
 
-    .btn:hover {
-      transform: scale(1.2);
-      box-shadow: 0 0 25px rgba(122,0,204,0.9);
-    }
+.btn:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 25px rgba(122,0,204,0.9);
+}
 
-    @keyframes pulse {
-      0% { transform: scale(1); box-shadow: 0 0 10px rgba(122,0,204,0.6); }
-      50% { transform: scale(1.05); box-shadow: 0 0 25px rgba(122,0,204,0.9); }
-      100% { transform: scale(1); box-shadow: 0 0 10px rgba(122,0,204,0.6); }
-    }
+@keyframes pulse {
+  0% { transform: scale(1); box-shadow: 0 0 10px rgba(122,0,204,0.6); }
+  50% { transform: scale(1.05); box-shadow: 0 0 20px rgba(122,0,204,0.8); }
+  100% { transform: scale(1); box-shadow: 0 0 10px rgba(122,0,204,0.6); }
+}
 
-    .cake-container {
-      perspective: 1000px;
-      margin-top: 4vh;
-    }
+/* Cake */
+.cake-container {
+  perspective: 1000px;
+  margin-top: 2rem;
+}
 
-    .cake {
-      font-size: 15vw;
-      cursor: pointer;
-      transform-style: preserve-3d;
-      transition: transform 1s;
-      display: inline-block;
-      position: relative;
-      z-index: 5;
-    }
+.cake {
+  font-size: 6rem;         /* controlled size */
+  max-width: 90%;
+  cursor: pointer;
+  transform-style: preserve-3d;
+  transition: transform 1s;
+  display: inline-block;
+  position: relative;
+  z-index: 5;
+}
 
-    .cake.flipped {
-      transform: rotateY(180deg);
-    }
+.cake.flipped {
+  transform: rotateY(180deg);
+}
 
-    .cake .front, .cake .back {
-      backface-visibility: hidden;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-    }
+.cake .front, .cake .back {
+  backface-visibility: hidden;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
 
-    .cake .back {
-      transform: rotateY(180deg);
-      font-size: 4vw;
-      color: #4a0072;
-      padding: 1em;
-    }
+.cake .back {
+  transform: rotateY(180deg);
+  font-size: 1rem;
+  color: #4a0072;
+  padding: 1rem;
+  line-height: 1.4;
+  word-wrap: break-word;
+}
 
-    .message {
-      font-size: 3vw;
-      line-height: 1.5em;
-      color: #4a0072;
-      margin-top: 2vh;
-      opacity: 0;
-      transition: opacity 2s ease;
-    }
+/* Messages */
+.message {
+  font-size: 1rem;
+  line-height: 1.6;
+  color: #4a0072;
+  margin-top: 1.5rem;
+  opacity: 0;
+  transition: opacity 2s ease;
+  letter-spacing: 0.5px;
+  max-width: 90%;
+}
 
-    .scroll-msg {
-      font-size: 2.5vw;
-      color: #4a0072;
-      margin-top: 4vh;
-      opacity: 0.8;
-    }
+.scroll-msg {
+  font-size: 0.9rem;
+  color: #4a0072;
+  margin-top: 1.5rem;
+  opacity: 0.8;
+}
 
-    .sparkle, .heart, .small-cake {
-      position: fixed;
-      pointer-events: none;
-      z-index: 9999;
-      font-size: 2.5vw;
-      opacity: 0.9;
-      animation: float 6s linear infinite;
-    }
+/* Floating effects */
+.sparkle, .heart, .small-cake {
+  position: fixed;
+  pointer-events: none;
+  z-index: 9999;
+  font-size: 1rem;
+  opacity: 0.9;
+  animation: float 6s linear infinite;
+}
 
-    @keyframes float {
-      0% { transform: translateY(0) rotate(0); }
-      100% { transform: translateY(-120vh) rotate(360deg); }
-    }
+@keyframes float {
+  0% { transform: translateY(0) rotate(0); }
+  100% { transform: translateY(-120vh) rotate(360deg); }
+}
 
-    @keyframes fadeIn {
-      0% { opacity: 0; transform: translateY(20px); }
-      100% { opacity: 1; transform: translateY(0); }
-    }
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
 
-    @media (max-width: 600px) {
-      h1 { font-size: 8vw; }
-      .name { font-size: 10vw; }
-      .cake { font-size: 25vw; }
-      .message { font-size: 4vw; }
-      .scroll-msg { font-size: 3.5vw; }
-    }
-  </style>
+/* Responsive */
+@media (max-width: 600px) {
+  h1 { font-size: 1.5rem; }
+  .name { font-size: 2rem; }
+  .cake { font-size: 4rem; }
+  .message { font-size: 0.9rem; }
+  .scroll-msg { font-size: 0.8rem; }
+}
+</style>
 </head>
 <body>
-  <h1>Happy Birthday To The Love of My Life<br>
-    <span class="name">SUMAIYA KHAN MANAY 💜</span>
-  </h1>
+<h1>Happy Birthday To The Love of My Life<br>
+<span class="name">SUMAIYA KHAN MANAY 💜</span></h1>
 
-  <button class="btn" onclick="showSurprise()">Open Surprise 🎁</button>
+<button class="btn" onclick="showSurprise()">Open Surprise 🎁</button>
 
-  <div class="cake-container">
-    <div class="cake" id="cake" onclick="flipCake()">
-      <div class="front">🎂</div>
-      <div class="back">Due to long distance I couldn't treat you well and couldn't be with you.<br>That's the worst feeling 💔</div>
-    </div>
+<div class="cake-container">
+  <div class="cake" id="cake" onclick="flipCake()">
+    <div class="front">🎂</div>
+    <div class="back">Due to long distance I couldn't treat you well and couldn't be with you.<br>That's the worst feeling 💔</div>
   </div>
+</div>
 
-  <p class="message" id="message">
-    My sword is yours.<br>
-    My life is yours.<br>
-    My love is yours.<br>
-    💖 Forever Yours, Nobel 💖<br><br>
-    If possible, forgive me honey, please forgive me. I APOLOGIZE.
-  </p>
+<p class="message" id="message">
+  My sword is yours.<br>
+  My life is yours.<br>
+  My love is yours.<br>
+  💖 Forever Yours, Nobel 💖<br><br>
+  If possible, forgive me honey, please forgive me. I APOLOGIZE.
+</p>
 
-  <p class="scroll-msg">Scroll down ⬇️</p>
+<p class="scroll-msg">Scroll down ⬇️</p>
 
-  <script>
-    function createSymbol(type) {
-      const el = document.createElement('div');
-      el.classList.add(type);
-      el.textContent = type === 'sparkle' ? '✨' : type === 'heart' ? '💜' : '🎂';
-      el.style.left = Math.random() * window.innerWidth + 'px';
-      el.style.top = window.innerHeight + 'px';
-      el.style.fontSize = (Math.random()*3 + 2) + 'vw';
-      el.style.animationDuration = (Math.random() * 3 + 5) + 's';
-      document.body.appendChild(el);
-      setTimeout(() => el.remove(), 6000);
-    }
+<script>
+function createSymbol(type){
+  const el = document.createElement('div');
+  el.classList.add(type);
+  el.textContent = type==='sparkle'?'✨':type==='heart'?'💜':'🎂';
+  el.style.left = Math.random()*window.innerWidth+'px';
+  el.style.top = window.innerHeight+'px';
+  el.style.fontSize = (Math.random()*0.8 + 0.8)+'rem';
+  el.style.animationDuration = (Math.random()*3 + 5)+'s';
+  document.body.appendChild(el);
+  setTimeout(()=> el.remove(),6000);
+}
 
-    function showSurprise() {
-      document.getElementById('message').style.opacity = 1;
-      for(let i=0; i<80; i++){
-        setTimeout(()=> {
-          const symbols=['sparkle','heart','small-cake'];
-          createSymbol(symbols[Math.floor(Math.random()*symbols.length)]);
-        }, i*150);
-      }
-    }
+function showSurprise(){
+  document.getElementById('message').style.opacity = 1;
+  for(let i=0;i<60;i++){
+    setTimeout(()=>{
+      const symbols=['sparkle','heart','small-cake'];
+      createSymbol(symbols[Math.floor(Math.random()*symbols.length)]);
+    }, i*150);
+  }
+}
 
-    function flipCake() {
-      const cake = document.getElementById('cake');
-      cake.classList.toggle('flipped');
-      // optional extra: add sparkle burst on flip
-      for(let i=0; i<20; i++){
-        setTimeout(()=> {
-          createSymbol(['sparkle','heart']);
-        }, i*50);
-      }
-    }
-  </script>
+function flipCake(){
+  const cake = document.getElementById('cake');
+  cake.classList.toggle('flipped');
+  for(let i=0;i<15;i++){
+    setTimeout(()=>{ createSymbol(['sparkle','heart']); }, i*50);
+  }
+}
+</script>
 </body>
 </html>
